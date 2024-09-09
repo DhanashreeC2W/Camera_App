@@ -1,4 +1,6 @@
+import 'package:camera_app/controller/item_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'view/home_screen.dart';
 
@@ -11,8 +13,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return Provider(
+      create: (context) => ItemsData(),
+      child: const  MaterialApp(
+        debugShowCheckedModeBanner: false,
       home: HomeScreen(),
+    ),
     );
   }
 }

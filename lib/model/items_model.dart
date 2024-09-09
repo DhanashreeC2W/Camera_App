@@ -2,12 +2,10 @@
 
 
 
-import 'dart:ffi';
-
 class ItemsModel {
   String camImg;
   String camName;
-  Float camRating;
+  double camRating;
   int camPrice;
 
   ItemsModel(
