@@ -1,6 +1,6 @@
 import '../model/items_model.dart';
 
-class ItemsData{
+class ItemsData {
   List<ItemsModel> itemList = [
   ItemsModel(
     camImg: "assets/images/img1.png",

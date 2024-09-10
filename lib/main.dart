@@ -1,4 +1,5 @@
 import 'package:camera_app/controller/item_controller.dart';
+import 'package:camera_app/view/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,7 @@ class MainApp extends StatelessWidget {
       create: (context) => ItemsData(),
       child: const  MaterialApp(
         debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: DetailsScreen(),
     ),
     );
   }
