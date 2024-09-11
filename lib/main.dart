@@ -14,12 +14,20 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
+    return ChangeNotifierProvider(
       create: (context) => ItemsData(),
-      child: const  MaterialApp(
+      child: MaterialApp(
+        routes: {
+          "HomeScreen": (context) {
+            return const HomeScreen();
+          },
+          "DetailsScreen": (context) {
+            return const DetailsScreen();
+          }
+        },
         debugShowCheckedModeBanner: false,
-      home: DetailsScreen(),
-    ),
+        home: const HomeScreen(),
+      ),
     );
   }
 }

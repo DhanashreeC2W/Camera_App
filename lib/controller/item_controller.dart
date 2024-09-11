@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '../model/items_model.dart';
 
-class ItemsData {
+class ItemsData extends ChangeNotifier{
   List<ItemsModel> itemList = [
   ItemsModel(
     camImg: "assets/images/img1.png",
@@ -37,9 +39,16 @@ class ItemsData {
     camName: "SONY 200mm Zoom",
     camPrice: 6000,
     camRating: 4.5,
-  ),
-   
-  
+  ),  
 ];
+
+ItemsModel? _selectedCam;
+
+ItemsModel? get selectedCam => _selectedCam;
+
+void selectCam(ItemsModel item){
+  _selectedCam = item;
+  notifyListeners();
+}
 
 }

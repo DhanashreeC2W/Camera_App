@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:camera_app/controller/item_controller.dart';
-import 'package:camera_app/model/items_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final deviceHeight = MediaQuery.sizeOf(context).height;
     //log("$deviceHeight");
 
-    List<ItemsModel> itemsDataObj = Provider.of<ItemsData>(context).itemList;
+    ItemsData itemsDataObj = Provider.of<ItemsData>(context);
 
     log("${deviceHeight * 0.0006}");
     return Scaffold(
@@ -174,9 +173,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisSpacing: 10,
                   childAspectRatio: deviceHeight * 0.0006, //0.7
                 ),
-                itemCount: itemsDataObj.length,
+                itemCount: itemsDataObj.itemList.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
+                    onTap: () {
+                      itemsDataObj.selectCam(itemsDataObj.itemList[index]);
+                      Navigator.of(context).pushNamed("DetailsScreen");
+                    },
                     child: Container(
                       //margin: EdgeInsets.only(bottom: 20),
                       padding:
@@ -210,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: 5,
                               ),
                               Text(
-                                "${itemsDataObj[index].camRating}",
+                                "${itemsDataObj.itemList[index].camRating}",
                                 style: GoogleFonts.dmSans(
                                     fontWeight: FontWeight.w500,
                                     fontSize: deviceHeight * 0.016,
@@ -224,13 +227,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: deviceHeight * 0.147,
                             //width: deviceWidth*0.147,
                             child: Image.asset(
-                              itemsDataObj[index].camImg,
+                              itemsDataObj.itemList[index].camImg,
                               height: deviceHeight * 0.147,
                               // width: deviceWidth*0.147,
                               fit: BoxFit.cover,
                             ),
                           ),
-                          Text(itemsDataObj[index].camName,
+                          Text(itemsDataObj.itemList[index].camName,
                               style: GoogleFonts.dmSans(
                                   // fontSize: deviceHeight,
                                   fontWeight: FontWeight.w500,
@@ -240,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             // mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("\$${itemsDataObj[index].camPrice}",
+                              Text("\$${itemsDataObj.itemList[index].camPrice}",
                                   style: GoogleFonts.dmSans(
                                       // fontSize: deviceHeight,
                                       fontWeight: FontWeight.w700,
