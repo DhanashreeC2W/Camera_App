@@ -1,18 +1,18 @@
-/// Model class representing a camera item
+/// MODEL CLASS REPRESENTING A CAMERA ITEM
 class ItemsModel {
-  /// Path to the image asset representing the camera
+  ///  IMAGE OF THE CAMERA
   final String camImg;
 
-  /// Name of the camera
+  /// NAME OF THE CAMERA
   final String camName;
 
-  /// Rating of the camera, typically between 0.0 and 5.0
+  /// RATING OF THE CAMERA
   final double camRating;
 
-  /// Price of the camera in the respective currency
+  /// PRICE OF THE CAMERA 
   final int camPrice;
 
-  /// Constructor to create an instance of `ItemsModel`
+  /// CONSTRUCTOR TO CREATE AN INSTANCE OF `ITEMSMODEL`
   ItemsModel({
     required this.camImg,
     required this.camName,

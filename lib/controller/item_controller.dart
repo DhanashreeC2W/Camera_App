@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../model/items_model.dart';
 
-/// A ChangeNotifier class to manage items data and state
+/// A CHANGENOTIFIER CLASS TO MANAGE ITEMS DATA AND STATE
 class ItemsData extends ChangeNotifier {
   
-  /// List of camera items that can be displayed
+  /// LIST OF CAMERA ITEMS THAT CAN BE DISPLAYED
   List<ItemsModel> itemList = [
     ItemsModel(
       camImg: "assets/images/img1.png",
@@ -44,30 +44,30 @@ class ItemsData extends ChangeNotifier {
     ),
   ];
 
-  /// The currently selected camera item, can be null if none is selected
+  /// THE CURRENTLY SELECTED CAMERA ITEM
   ItemsModel? _selectedCam;
 
-  /// Getter for the selected camera
+  /// GETTER FOR THE SELECTED CAMERA
   ItemsModel? get selectedCam => _selectedCam;
 
-  /// Method to select a camera item and notify listeners about the change
+  /// METHOD TO SELECT A CAMERA ITEM 
   void selectCam(ItemsModel item) {
     _selectedCam = item;
-    notifyListeners();  /// Triggers UI updates wherever this data is consumed
+    notifyListeners(); 
   }
 
-  /// Variable to keep track of the item count for cart or purchase operations
+  /// VARIABLE TO KEEP TRACK OF THE ITEM COUNT 
   int count = 1;
 
-  /// Method to increment the item count
+  /// METHOD TO INCREMENT THE ITEM COUNT
   void countIncr() {
     count++;
-    notifyListeners();  /// Notify UI to update the displayed count
+    notifyListeners();  
   }
 
-  /// Method to decrement the item count, ensuring it doesn't go below 1
+  /// METHOD TO DECREMENT THE ITEM COUNT
   void countDecr() {
-    if (count > 1) {  /// Ensure count stays above 0
+    if (count > 1) {  /// COUNT WILL STAYS ABOVE 0
       count--;
       notifyListeners();
     }

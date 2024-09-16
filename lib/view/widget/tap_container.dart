@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-/// Custom widget that creates a container with an icon inside and optional gradient background
+/// CUSTOM WIDGET THAT CREATES A CONTAINER WITH AN ICON INSIDE AND OPTIONAL GRADIENT BACKGROUND
 class OnTapContainer extends StatelessWidget {
   /// Colors for the container's gradient background
   final Color gradient1OfContainer;
   final Color gradient2OfContainer;
 
-  /// Dimensions of the container
+  /// DIMENSIONS OF THE CONTAINER
   final double containerHeight;
   final double containerWidth;
 
-  /// Icon size and icon itself that will be displayed inside the container
+  /// ICON SIZE AND ICON ITSELF THAT WILL BE DISPLAYED INSIDE THE CONTAINER
   final double iconSize;
   final Icon containerIcon;
 
-  /// Constructor to initialize required parameters
+  /// CONSTRUCTOR TO INITIALIZE REQUIRED PARAMETERS
   const OnTapContainer({
     super.key,
     required this.gradient1OfContainer,
@@ -28,36 +28,39 @@ class OnTapContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      /// Sets height and width of the container
+      /// SETS HEIGHT AND WIDTH OF THE CONTAINER
       height: containerHeight,
       width: containerWidth,
 
-      /// Container decoration with border, border radius, and gradient background
+      /// CONTAINER DECORATION WITH BORDER, BORDER RADIUS, AND GRADIENT BACKGROUND
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7.64),
 
-        /// Adding a subtle border around the container
+        /// ADDING A SUBTLE BORDER AROUND THE CONTAINER
         border: Border.all(
           width: 0.95,
           color: const Color.fromRGBO(55, 73, 87, 0.2),
         ),
 
-        /// Applying a gradient to the background
-        gradient: LinearGradient(colors: [
-          gradient1OfContainer,
-          gradient2OfContainer,
-        ]),
-        
+        /// APPLYING A GRADIENT TO THE BACKGROUND
+        gradient: LinearGradient(
+          colors: [
+            gradient1OfContainer,
+            gradient2OfContainer,
+          ],
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+        ),
       ),
 
-      /// Placing an icon inside the container
+      /// PLACING AN ICON INSIDE THE CONTAINER
       child: Icon(
         containerIcon.icon,
 
-        /// Icon color is set to white
+        /// ICON COLOR IS SET TO WHITE
         color: const Color.fromRGBO(255, 255, 255, 1),
 
-        /// Icon size defined by the passed parameter
+        /// ICON SIZE DEFINED BY THE PASSED PARAMETER
         size: iconSize,
       ),
     );

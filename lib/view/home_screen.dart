@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Image.asset(
                       "assets/images/bag.png",
                       height: deviceWidth * 0.060, // ICON HEIGHT 24
-                      width: deviceWidth * 0.060,  // ICON WIDTH 24
+                      width: deviceWidth * 0.060, // ICON WIDTH 24
                     ),
                     Positioned(
                       top: 3,
@@ -64,7 +64,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Color.fromRGBO(86, 93, 107, 1),
                         ),
                         child: Text(
-                          "1",  /// SHOPPING BAG ITEM COUNT
+                          "1",
+
+                          /// SHOPPING BAG ITEM COUNT
                           textAlign: TextAlign.center,
                           style: GoogleFonts.dmSans(
                               fontSize: deviceWidth * 0.017,
@@ -76,10 +78,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            
+
             /// FEATURED BANNER SECTION WITH TITLE AND BUTTON
             Container(
-              padding: const EdgeInsets.only(top: 25, left: 22, bottom: 25),
+              padding: EdgeInsets.only(
+                  top: deviceWidth * 0.06,
+                  left: deviceWidth * 0.05,
+                  bottom: deviceWidth * 0.05),
               margin: const EdgeInsets.only(top: 50),
               width: deviceWidth,
               height: deviceWidth * 0.39,
@@ -98,6 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -107,14 +113,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         "New Vintage\nCollection",
                         style: GoogleFonts.dmSans(
                             fontWeight: FontWeight.w600,
-                            fontSize: deviceWidth * 0.05,  /// FONT SIZE 20
+                            fontSize: deviceWidth * 0.04,
+
+                            /// FONT SIZE 20
                             color: const Color.fromRGBO(255, 255, 255, 1),
                             letterSpacing: 2),
                       ),
+
                       /// BUTTON TO EXPLORE THE NEW COLLECTION
                       Container(
                         width: deviceWidth * 0.249,
                         height: deviceWidth * 0.080,
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
                           gradient: const LinearGradient(
@@ -131,13 +141,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent,
-                            fixedSize: Size(
-                                deviceWidth * 0.249, deviceWidth * 0.080),
-                          ),
-                          onPressed: () {},
+                        child: GestureDetector(
+                          onTap: () {},
                           child: Text(
                             "Explore now",
                             style: GoogleFonts.dmSans(
@@ -149,36 +154,38 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  const Spacer(),
+                  //const Spacer(),
                   /// FEATURED IMAGE OF THE VINTAGE COLLECTION
-                  SizedBox(
-                    height: deviceHeight * 0.687,
-                    width: deviceWidth * 0.50,
-                    child: Image.asset(
-                      "assets/images/first.png",
-                      alignment: Alignment.center,
-                      fit: BoxFit.cover,
-                    ),
+                  Image.asset(
+                    "assets/images/first.png",
+                    alignment: Alignment.center,
+                    fit: BoxFit.cover,
+                    height: deviceHeight * 0.7,
+                    width: deviceWidth * 0.5, //50
                   ),
                 ],
               ),
             ),
-            
+
             const SizedBox(
               height: 10,
             ),
-            
+
             /// POPULAR SECTION HEADER
             Text(
               "Popular",
               style: GoogleFonts.dmSans(
                   fontWeight: FontWeight.w700,
-                  fontSize: deviceWidth * 0.05,  /// FONT SIZE 20
+                  fontSize: deviceWidth * 0.05,
+
+                  /// FONT SIZE 20
                   color: const Color.fromRGBO(255, 255, 255, 1)),
             ),
-            
-            const SizedBox(height: 10,),
-            
+
+            const SizedBox(
+              height: 10,
+            ),
+
             /// GRID OF POPULAR ITEMS
             Expanded(
               child: GridView.builder(
@@ -187,7 +194,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisCount: 2,
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 10,
-                  childAspectRatio: deviceHeight * 0.0006,  /// ASPECT RATIO
+                  childAspectRatio: deviceWidth<500? deviceHeight * 0.0008:deviceHeight*0.0015,
+
+                  /// ASPECT RATIO
                 ),
                 itemCount: itemsDataObj.itemList.length,
                 itemBuilder: (context, index) {
@@ -210,8 +219,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                         borderRadius: BorderRadius.circular(18),
                         gradient: const LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
                             colors: [
                               Color.fromRGBO(54, 57, 65, 1),
                               Color.fromRGBO(62, 66, 75, 0),
@@ -219,6 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           /// RATING ROW WITH STAR ICON
                           Row(
@@ -241,16 +251,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ],
                           ),
+
                           /// IMAGE OF THE POPULAR ITEM
-                          Container(
-                            alignment: Alignment.center,
-                            height: deviceHeight * 0.147,
+                          Center(
                             child: Image.asset(
                               itemsDataObj.itemList[index].camImg,
-                              height: deviceHeight * 0.147,
+                              height:deviceWidth<500? deviceHeight * 0.147:deviceHeight * 0.145,
+                              width: deviceWidth<500?deviceWidth * 0.6:deviceWidth*0.2,
                               fit: BoxFit.cover,
                             ),
                           ),
+
                           /// CAMERA NAME TEXT
                           Text(itemsDataObj.itemList[index].camName,
                               style: GoogleFonts.dmSans(
@@ -267,6 +278,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1))),
                               const Spacer(),
+
                               /// FORWARD ARROW BUTTON
                               Container(
                                 width: 23.57,
@@ -278,6 +290,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Color.fromRGBO(111, 117, 128, 1),
                                       Color.fromRGBO(31, 34, 37, 0)
                                     ],
+                                    begin: Alignment.topLeft,
                                   ),
                                   boxShadow: const [
                                     BoxShadow(
