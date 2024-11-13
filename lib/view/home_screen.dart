@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:camera_app/controller/item_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -26,10 +27,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
     /// LOGGING THE HEIGHT MULTIPLIED BY A SPECIFIC VALUE FOR DEBUGGING PURPOSES.
     log("${deviceHeight * 0.264}");
+
     return Scaffold(
       backgroundColor: const Color.fromRGBO(31, 33, 37, 1),
       body: Padding(
-        padding: const EdgeInsets.only(top: 51, left: 20, right: 20),
+        padding: EdgeInsets.only(
+          top: deviceHeight * 0.06, // 51 for a height-based value
+          left: deviceWidth * 0.05, // 20 for a width-based value
+          right: deviceWidth * 0.05, // 20 for a width-based value
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -41,22 +47,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   "PixelsCo.",
                   style: GoogleFonts.dmSans(
-                      fontSize: deviceWidth * 0.054, // FONT SIZE 22
-                      fontWeight: FontWeight.w600,
-                      color: const Color.fromRGBO(255, 255, 255, 1)),
+                    fontSize: deviceWidth * 0.054, // FONT SIZE 22
+                    fontWeight: FontWeight.w600,
+                    color: const Color.fromRGBO(255, 255, 255, 1),
+                  ),
                 ),
                 Stack(
                   children: [
                     Image.asset(
                       "assets/images/bag.png",
-                      height: deviceWidth * 0.060, // ICON HEIGHT 24
-                      width: deviceWidth * 0.060, // ICON WIDTH 24
+                      height: deviceWidth * 0.06, // ICON HEIGHT 24
+                      width: deviceWidth * 0.06, // ICON WIDTH 24
                     ),
                     Positioned(
-                      top: 3,
-                      left: deviceWidth * 0,
+                      top: deviceHeight * 0.004,
+                      left: deviceWidth * 0.0,
                       child: Container(
-                        padding: const EdgeInsets.all(4),
+                        padding: EdgeInsets.all(deviceWidth * 0.01), 
                         width: deviceWidth * 0.035,
                         height: deviceWidth * 0.035,
                         decoration: const BoxDecoration(
@@ -65,12 +72,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         child: Text(
                           "1",
-
                           /// SHOPPING BAG ITEM COUNT
                           textAlign: TextAlign.center,
                           style: GoogleFonts.dmSans(
-                              fontSize: deviceWidth * 0.017,
-                              color: const Color.fromRGBO(255, 255, 255, 1)),
+                            fontSize: deviceWidth * 0.017,
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                          ),
                         ),
                       ),
                     ),
@@ -82,12 +89,13 @@ class _HomeScreenState extends State<HomeScreen> {
             /// FEATURED BANNER SECTION WITH TITLE AND BUTTON
             Container(
               padding: EdgeInsets.only(
-                  top: deviceWidth * 0.06,
-                  left: deviceWidth * 0.05,
-                  bottom: deviceWidth * 0.05),
-              margin: const EdgeInsets.only(top: 50),
+                top: deviceWidth * 0.06,
+                left: deviceWidth * 0.05,
+                bottom: deviceWidth * 0.05,
+              ),
+              margin: EdgeInsets.only(top: deviceHeight * 0.06),
               width: deviceWidth,
-              height: deviceWidth * 0.39,
+              height: deviceHeight * 0.25,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(18),
                 gradient: const LinearGradient(colors: [
@@ -103,87 +111,34 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "New Vintage\nCollection",
-                        style: GoogleFonts.dmSans(
-                            fontWeight: FontWeight.w600,
-                            fontSize: deviceWidth * 0.04,
-
-                            /// FONT SIZE 20
-                            color: const Color.fromRGBO(255, 255, 255, 1),
-                            letterSpacing: 2),
-                      ),
-
-                      /// BUTTON TO EXPLORE THE NEW COLLECTION
-                      Container(
-                        width: deviceWidth * 0.249,
-                        height: deviceWidth * 0.080,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          gradient: const LinearGradient(
-                            colors: [
-                              Color.fromRGBO(50, 52, 59, 1),
-                              Color.fromRGBO(220, 220, 255, 0),
-                            ],
-                          ),
-                          boxShadow: const [
-                            BoxShadow(
-                              offset: Offset(0, 10.41),
-                              blurRadius: 21.33,
-                              color: Color.fromRGBO(0, 0, 0, 0.4),
-                            ),
-                          ],
-                        ),
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Text(
-                            "Explore now",
-                            style: GoogleFonts.dmSans(
-                                fontWeight: FontWeight.w500,
-                                fontSize: deviceWidth * 0.02,
-                                color: const Color.fromRGBO(255, 255, 255, 1)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  //const Spacer(),
-                  /// FEATURED IMAGE OF THE VINTAGE COLLECTION
-                  Image.asset(
-                    "assets/images/first.png",
-                    alignment: Alignment.center,
-                    fit: BoxFit.cover,
-                    height: deviceHeight * 0.7,
-                    width: deviceWidth * 0.5, //50
+                  Container(
+                    color: Colors.transparent,
+                    child: SvgPicture.asset(
+                      "assets/svg/first.svg",
+                      height: deviceHeight * 0.25, 
+                    ),
                   ),
                 ],
               ),
             ),
 
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: deviceHeight * 0.01, 
             ),
 
             /// POPULAR SECTION HEADER
             Text(
               "Popular",
               style: GoogleFonts.dmSans(
-                  fontWeight: FontWeight.w700,
-                  fontSize: deviceWidth * 0.05,
-
-                  /// FONT SIZE 20
-                  color: const Color.fromRGBO(255, 255, 255, 1)),
+                fontWeight: FontWeight.w700,
+                fontSize: deviceWidth * 0.05, // FONT SIZE 20
+                color: const Color.fromRGBO(255, 255, 255, 1),
+              ),
             ),
 
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: deviceHeight * 0.01, 
             ),
 
             /// GRID OF POPULAR ITEMS
@@ -192,11 +147,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 scrollDirection: Axis.vertical,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  childAspectRatio: deviceWidth<500? deviceHeight * 0.0008:deviceHeight*0.0015,
-
-                  /// ASPECT RATIO
+                  mainAxisSpacing: deviceHeight * 0.01, 
+                  crossAxisSpacing: deviceWidth * 0.03, 
+                  childAspectRatio: deviceWidth < 500
+                      ? deviceHeight * 0.0008
+                      : deviceHeight * 0.0015, 
                 ),
                 itemCount: itemsDataObj.itemList.length,
                 itemBuilder: (context, index) {
@@ -208,23 +163,27 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     child: Container(
                       height: deviceHeight * 0.264,
-                      padding:
-                          const EdgeInsets.only(top: 14, left: 15, right: 15),
+                      padding: EdgeInsets.symmetric(
+                        vertical: deviceHeight * 0.02,
+                        horizontal: deviceWidth * 0.04, 
+                      ),
                       decoration: BoxDecoration(
                         boxShadow: const [
                           BoxShadow(
-                              offset: Offset(0, 20),
-                              blurRadius: 60,
-                              color: Color.fromRGBO(0, 0, 0, 0.25)),
+                            offset: Offset(0, 20),
+                            blurRadius: 60,
+                            color: Color.fromRGBO(0, 0, 0, 0.25),
+                          ),
                         ],
                         borderRadius: BorderRadius.circular(18),
                         gradient: const LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                              Color.fromRGBO(54, 57, 65, 1),
-                              Color.fromRGBO(62, 66, 75, 0),
-                            ]),
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            Color.fromRGBO(54, 57, 65, 1),
+                            Color.fromRGBO(62, 66, 75, 0),
+                          ],
+                        ),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -238,53 +197,62 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: const Color.fromRGBO(255, 197, 103, 1),
                                 size: deviceWidth * 0.0429,
                               ),
-                              const SizedBox(
-                                width: 5,
+                              SizedBox(
+                                width: deviceWidth * 0.013, 
                               ),
                               Text(
                                 "${itemsDataObj.itemList[index].camRating}",
                                 style: GoogleFonts.dmSans(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: deviceHeight * 0.016,
-                                    color:
-                                        const Color.fromRGBO(255, 255, 255, 1)),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: deviceHeight * 0.016,
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
+                                ),
                               ),
                             ],
                           ),
 
-                          /// IMAGE OF THE POPULAR ITEM
+                          // IMAGE OF THE POPULAR ITEM
                           Center(
                             child: Image.asset(
                               itemsDataObj.itemList[index].camImg,
-                              height:deviceWidth<500? deviceHeight * 0.147:deviceHeight * 0.145,
-                              width: deviceWidth<500?deviceWidth * 0.6:deviceWidth*0.2,
+                              height: deviceWidth < 500
+                                  ? deviceHeight * 0.147
+                                  : deviceHeight * 0.145, 
+                              width: deviceWidth < 500
+                                  ? deviceWidth * 0.6
+                                  : deviceWidth * 0.2,
                               fit: BoxFit.cover,
                             ),
                           ),
 
                           /// CAMERA NAME TEXT
-                          Text(itemsDataObj.itemList[index].camName,
-                              style: GoogleFonts.dmSans(
-                                  fontWeight: FontWeight.w500,
-                                  color:
-                                      const Color.fromRGBO(255, 255, 255, 1))),
+                          Text(
+                            itemsDataObj.itemList[index].camName,
+                            style: GoogleFonts.dmSans(
+                              fontWeight: FontWeight.w500,
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                            ),
+                          ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               /// PRICE TEXT
-                              Text("\$${itemsDataObj.itemList[index].camPrice}",
-                                  style: GoogleFonts.dmSans(
-                                      fontWeight: FontWeight.w700,
-                                      color: const Color.fromRGBO(
-                                          255, 255, 255, 1))),
+                              Text(
+                                "\$${itemsDataObj.itemList[index].camPrice}",
+                                style: GoogleFonts.dmSans(
+                                  fontWeight: FontWeight.w700,
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
+                                ),
+                              ),
                               const Spacer(),
 
                               /// FORWARD ARROW BUTTON
                               Container(
-                                width: 23.57,
-                                height: 21.75,
+                                width: deviceWidth * 0.06, 
+                                height: deviceWidth * 0.055, 
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5.04),
+                                  borderRadius:
+                                      BorderRadius.circular(deviceWidth * 0.01),
                                   gradient: const LinearGradient(
                                     colors: [
                                       Color.fromRGBO(111, 117, 128, 1),
@@ -294,15 +262,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   boxShadow: const [
                                     BoxShadow(
-                                        offset: Offset(0, 10),
-                                        blurRadius: 23,
-                                        color: Color.fromRGBO(0, 0, 0, 0.25)),
+                                      offset: Offset(0, 10),
+                                      blurRadius: 23,
+                                      color: Color.fromRGBO(0, 0, 0, 0.25),
+                                    ),
                                   ],
                                 ),
                                 child: Icon(
                                   Icons.arrow_forward,
                                   color: const Color.fromRGBO(255, 255, 255, 1),
-                                  size: deviceWidth * 0.02,
+                                  size: deviceWidth * 0.02, 
                                 ),
                               ),
                             ],

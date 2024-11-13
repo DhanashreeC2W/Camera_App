@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import 'view/home_screen.dart';
 
-
 void main() {
   runApp(const MainApp());
 }
@@ -16,22 +15,18 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      /// PROVIDING THE ITEMSDATA TO ALL CHILD WIDGETS THAT NEED IT
+      /// PROVIDING THE ITEMSDATA TO ALL CHILD WIDGETS THAT NEEDED IT
       create: (context) => ItemsData(),
 
       child: MaterialApp(
         routes: {
           "HomeScreen": (context) {
-             /// ROUTE FOR HOMESCREEN
+            /// ROUTE FOR HOMESCREEN
             return const HomeScreen();
-
-           
           },
           /// ROUTE FOR DETAILSSCREEN
           "DetailsScreen": (context) {
             return const DetailsScreen();
-
-            
           }
         },
         debugShowCheckedModeBanner: false,

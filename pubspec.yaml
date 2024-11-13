@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.14
   google_fonts: ^6.2.1
   gradient_borders: ^1.0.1
   provider: ^6.1.2
@@ -23,3 +24,4 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/svg/
