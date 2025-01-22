@@ -1,12 +1,9 @@
-import 'dart:developer';
-
 import 'package:camera_app/controller/item_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-/// HOMESCREEN WIDGET IS THE ENTRY POINT OF THE APPLICATION.
+/// HOMESCREEN
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -14,7 +11,6 @@ class HomeScreen extends StatefulWidget {
   State createState() => _HomeScreenState();
 }
 
-/// STATE CLASS FOR HOMESCREEN
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
@@ -25,16 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
     /// FETCHING THE ITEMSDATA FROM PROVIDER, WHICH HOLDS THE ITEM LIST.
     ItemsData itemsDataObj = Provider.of<ItemsData>(context);
 
-    /// LOGGING THE HEIGHT MULTIPLIED BY A SPECIFIC VALUE FOR DEBUGGING PURPOSES.
-    log("${deviceHeight * 0.264}");
-
     return Scaffold(
       backgroundColor: const Color.fromRGBO(31, 33, 37, 1),
       body: Padding(
         padding: EdgeInsets.only(
-          top: deviceHeight * 0.06, // 51 for a height-based value
-          left: deviceWidth * 0.05, // 20 for a width-based value
-          right: deviceWidth * 0.05, // 20 for a width-based value
+          top: deviceHeight * 0.06,
+          left: deviceWidth * 0.05, // 20
+          right: deviceWidth * 0.05, // 20
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       top: deviceHeight * 0.004,
                       left: deviceWidth * 0.0,
                       child: Container(
-                        padding: EdgeInsets.all(deviceWidth * 0.01), 
+                        padding: EdgeInsets.all(deviceWidth * 0.01),
                         width: deviceWidth * 0.035,
                         height: deviceWidth * 0.035,
                         decoration: const BoxDecoration(
@@ -72,6 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         child: Text(
                           "1",
+
                           /// SHOPPING BAG ITEM COUNT
                           textAlign: TextAlign.center,
                           style: GoogleFonts.dmSans(
@@ -89,13 +83,13 @@ class _HomeScreenState extends State<HomeScreen> {
             /// FEATURED BANNER SECTION WITH TITLE AND BUTTON
             Container(
               padding: EdgeInsets.only(
-                top: deviceWidth * 0.06,
+                top: deviceWidth * 0.09,
                 left: deviceWidth * 0.05,
                 bottom: deviceWidth * 0.05,
               ),
               margin: EdgeInsets.only(top: deviceHeight * 0.06),
               width: deviceWidth,
-              height: deviceHeight * 0.25,
+              height: deviceHeight * 0.22,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(18),
                 gradient: const LinearGradient(colors: [
@@ -111,20 +105,52 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                          width: 125,
+                          child: Text(
+                            "New Vintage Collection",
+                            style: GoogleFonts.dmSans(
+                                color: const Color.fromRGBO(255, 255, 255, 1),
+                                fontWeight: FontWeight.w700,
+                                fontSize: deviceHeight * 0.022),
+                          )),
+                      Container(
+                        width: 100,
+                        height: 32,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            gradient: const LinearGradient(colors: [
+                              Color.fromRGBO(50, 52, 59, 1),
+                              Color.fromRGBO(114, 117, 129, 0),
+                            ]),
+                            borderRadius: BorderRadius.circular(18)),
+                        child: Text(
+                          "Explore now",
+                          style: GoogleFonts.dmSans(
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 10.41),
+                        ),
+                      ),
+                    ],
+                  ),
                   Container(
                     color: Colors.transparent,
-                    child: SvgPicture.asset(
-                      "assets/svg/first.svg",
-                      height: deviceHeight * 0.25, 
-                    ),
+                    child: Image.asset("assets/images/first.png",
+                        height: deviceHeight, width: 221, fit: BoxFit.cover),
                   ),
                 ],
               ),
             ),
 
             SizedBox(
-              height: deviceHeight * 0.01, 
+              height: deviceHeight * 0.05,
             ),
 
             /// POPULAR SECTION HEADER
@@ -137,21 +163,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            SizedBox(
-              height: deviceHeight * 0.01, 
-            ),
-
             /// GRID OF POPULAR ITEMS
             Expanded(
               child: GridView.builder(
                 scrollDirection: Axis.vertical,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  mainAxisSpacing: deviceHeight * 0.01, 
-                  crossAxisSpacing: deviceWidth * 0.03, 
+                  mainAxisSpacing: deviceHeight * 0.01,
+                  crossAxisSpacing: deviceWidth * 0.03,
                   childAspectRatio: deviceWidth < 500
                       ? deviceHeight * 0.0008
-                      : deviceHeight * 0.0015, 
+                      : deviceHeight * 0.0015,
                 ),
                 itemCount: itemsDataObj.itemList.length,
                 itemBuilder: (context, index) {
@@ -165,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: deviceHeight * 0.264,
                       padding: EdgeInsets.symmetric(
                         vertical: deviceHeight * 0.02,
-                        horizontal: deviceWidth * 0.04, 
+                        horizontal: deviceWidth * 0.04,
                       ),
                       decoration: BoxDecoration(
                         boxShadow: const [
@@ -198,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 size: deviceWidth * 0.0429,
                               ),
                               SizedBox(
-                                width: deviceWidth * 0.013, 
+                                width: deviceWidth * 0.013,
                               ),
                               Text(
                                 "${itemsDataObj.itemList[index].camRating}",
@@ -217,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               itemsDataObj.itemList[index].camImg,
                               height: deviceWidth < 500
                                   ? deviceHeight * 0.147
-                                  : deviceHeight * 0.145, 
+                                  : deviceHeight * 0.145,
                               width: deviceWidth < 500
                                   ? deviceWidth * 0.6
                                   : deviceWidth * 0.2,
@@ -248,8 +270,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
                               /// FORWARD ARROW BUTTON
                               Container(
-                                width: deviceWidth * 0.06, 
-                                height: deviceWidth * 0.055, 
+                                width: deviceWidth * 0.06,
+                                height: deviceWidth * 0.055,
                                 decoration: BoxDecoration(
                                   borderRadius:
                                       BorderRadius.circular(deviceWidth * 0.01),
@@ -271,7 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Icon(
                                   Icons.arrow_forward,
                                   color: const Color.fromRGBO(255, 255, 255, 1),
-                                  size: deviceWidth * 0.02, 
+                                  size: deviceWidth * 0.02,
                                 ),
                               ),
                             ],

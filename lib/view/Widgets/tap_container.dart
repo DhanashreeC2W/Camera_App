@@ -57,7 +57,6 @@ class OnTapContainer extends StatelessWidget {
       child: Icon(
         containerIcon.icon,
 
-        /// ICON COLOR IS SET TO WHITE
         color: const Color.fromRGBO(255, 255, 255, 1),
 
         /// ICON SIZE DEFINED BY THE PASSED PARAMETER
